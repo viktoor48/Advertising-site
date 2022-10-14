@@ -177,10 +177,10 @@ export class ProductListPresenter {
         this.filterRangeView.renderSlider();
     }
 
-    getRangePrice() {
-        const minMax = [this.products[0].price, this.products[0].price];
+    getRangePrice(products = this.products) {
+        const minMax = [products[0].price, products[0].price];
 
-        for (const product of this.products) {
+        for (const product of products) {
             if (minMax[0] > product.price) {
                 minMax[0] = product.price;
             }
@@ -290,6 +290,11 @@ export class ProductListPresenter {
                 }
             }
         }
+
+        const priceMinMax = this.getRangePrice(productsData);
+
+        this.filterRangeView.setPriceRange(priceMinMax);
+        console.log(this.filterRangeView.getPriceRange());
 
         resultsInfoEmptyBlock.classList.add('hidden');
         this.clearElements();

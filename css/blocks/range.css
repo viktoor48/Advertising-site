@@ -33,7 +33,7 @@
 .rs-tooltip-container {
     display: flex;
     justify-content: space-between;
-    margin: 10px -16px;
+    margin: 10px -16px 14px -16px;
 }
 
 .rs-tooltip {
@@ -57,4 +57,12 @@
 .noUi-connect {
     background-color: #4456B1;
     border-color: #4456B1;
+}
+
+.noUi-horizontal .noUi-handle {
+    top: -7px;
+}
+
+.noUi-connect, .noUi-origin {
+    height: 80%;
 }

@@ -9,6 +9,14 @@ export class FilterRangeView {
         this.priceRange = priceRange;
     }
 
+    setPriceRange(priceRange) {
+        this.priceRange = priceRange;
+    }
+
+    getPriceRange() {
+        return this.priceRange;
+    }
+
     getTemplate() {
         return createRangeFilterTemplate();
     }
