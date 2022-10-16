@@ -77,6 +77,12 @@
   background-color: var(--light-blue);
 }
 
+/*.sorting__order-tab input[type=radio]:checked label {*/
+/*  color: var(--white);*/
+/*  border-color: var(--light-blue);*/
+/*  background-color: var(--light-blue);*/
+/*}*/
+
 .sorting__order-tab label:active {
   outline: none;
   color: var(--white);

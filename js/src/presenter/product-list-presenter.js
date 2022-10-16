@@ -28,7 +28,9 @@ export class ProductListPresenter {
         this.currentCategory = CategoryType.ALL;
         this.productModel = productModel;
         this.products = productModel.products;
+        this.outputListProducts = productModel.products;
         this.filterRangeView = new FilterRangeView(this.getRangePrice());
+        this.currentFilter = 'sort-popular';
         btnShowFilterResults.addEventListener('click', this.formFilterHandler.bind(this));
         btnSortingFavourites.addEventListener('click', this.sortingFavourites.bind(this));
         sortingTabList.addEventListener('click', this.sortingTabListHandler.bind(this));
@@ -38,14 +40,8 @@ export class ProductListPresenter {
     sortingTabListHandler(evt) {
         evt.preventDefault();
         const valueTab = evt.target.getAttribute('for');
-        console.log(this.products);
-        let dataSort = [...this.products];
-        if (valueTab == 'sort-cheap') {
-            dataSort = dataSort.sort(byField('price')).reverse();
-        }
-        if (valueTab == 'sort-new') {
-            dataSort = dataSort.sort(byField('publish-date'));
-        }
+        this.currentFilter = valueTab;
+        const dataSort = sorting(this.currentFilter, this.outputListProducts);
 
         this.clearElements();
         this.renderProducts(dataSort);
@@ -57,8 +53,6 @@ export class ProductListPresenter {
         evt.preventDefault();
         const filterForm = document.filterForm;
         const formData = new FormData(filterForm);
-        console.log(Array.from(formData.entries()));
-        console.log(Array.from(formData.keys()));
 
         let data = [...this.products];
         let keys = Array.from(formData.keys());
@@ -81,7 +75,6 @@ export class ProductListPresenter {
 
         const labels = document.querySelectorAll('.rs-tooltip .rs-tooltip__value');
         const minMax = [Number(labels[0].textContent), Number(labels[1].textContent)];
-        console.log(minMax);
 
         data = data.filter((product) => {
             if (product.price >= minMax[0] && product.price <= minMax[1]) {
@@ -291,14 +284,16 @@ export class ProductListPresenter {
             }
         }
 
-        const priceMinMax = this.getRangePrice(productsData);
+        productsData = sorting(this.currentFilter, productsData);
 
+
+        this.outputListProducts = [...productsData];
+        const priceMinMax = this.getRangePrice(productsData);
         this.filterRangeView.setPriceRange(priceMinMax);
-        console.log(this.filterRangeView.getPriceRange());
 
         resultsInfoEmptyBlock.classList.add('hidden');
         this.clearElements();
-        this.renderProducts(productsData);
+        this.renderProducts(this.outputListProducts);
         this.productClickHandler();
         this.previewPhotoMouseOverHandler();
         this.renderFilterCategory();
@@ -361,4 +356,26 @@ function findProduct(productArray, id) {
 
 function byField(field) {
     return (a,b) => a[field] > b[field] ? 1 : -1;
+}
+
+function sorting(valueTab, products) {
+    const itemsTabList = sortingTabList.querySelectorAll('.sorting__order-tab');
+
+    itemsTabList.forEach((item) => {
+        if (item.firstElementChild.id == valueTab) {
+            item.firstElementChild.checked = true;
+        } else {
+            item.firstElementChild.checked = false;
+        }
+    });
+
+    let dataSort = [...products];
+    if (valueTab == 'sort-cheap') {
+        dataSort = dataSort.sort(byField('price')).reverse();
+    }
+    if (valueTab == 'sort-new') {
+        dataSort = dataSort.sort(byField('publish-date'));
+    }
+
+    return dataSort;
 }
