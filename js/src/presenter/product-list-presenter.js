@@ -42,7 +42,6 @@ export class ProductListPresenter {
         const valueTab = evt.target.getAttribute('for');
         this.currentFilter = valueTab;
         const dataSort = sorting(this.currentFilter, this.outputListProducts);
-
         this.clearElements();
         this.renderProducts(dataSort);
         this.productClickHandler();
@@ -212,7 +211,7 @@ export class ProductListPresenter {
         if (evt.currentTarget.classList.contains('active')) {
             resultsInfoFavourites.classList.add('hidden');
             this.clearElements();
-            this.renderProducts();
+            this.renderProducts(this.outputListProducts);
             this.productClickHandler();
             this.previewPhotoMouseOverHandler();
         } else {
