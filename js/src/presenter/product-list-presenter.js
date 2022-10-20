@@ -83,6 +83,9 @@ export class ProductListPresenter {
             }
         });
 
+        data = sorting(this.currentFilter, data);
+        this.outputListProducts = data;
+
         if (data.length == 0) {
             resultsInfoEmptyBlock.classList.remove('hidden');
             this.clearElements();
@@ -287,7 +290,7 @@ export class ProductListPresenter {
 
 
         this.outputListProducts = [...productsData];
-        const priceMinMax = this.getRangePrice(productsData);
+        const priceMinMax = this.getRangePrice(this.outputListProducts);
         this.filterRangeView.setPriceRange(priceMinMax);
 
         resultsInfoEmptyBlock.classList.add('hidden');
