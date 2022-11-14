@@ -11,6 +11,7 @@ import {createFilterEstate} from "../view/filter-estate-view.js";
 import {createFilterLaptop} from "../view/filter-laptop-view.js";
 import {FilterRangeView} from "../view/filter-all-view.js";
 import {filterType} from "../utils/filterFunction.js";
+import {filters} from "../const.js";
 
 const resultsList = document.querySelector(`.results__list`);
 const mainContainer = document.querySelector(`main`);
@@ -21,7 +22,6 @@ const sortingTabList = document.querySelector('.sorting__order-list');
 const categoriesList = document.querySelector('#categories');
 const btnShowFilterResults = document.querySelector('.filter__button');
 const resultsInfoEmptyBlock = document.querySelector('.results__info--empty-block');
-
 
 export class ProductListPresenter {
     constructor(productModel) {
@@ -324,13 +324,13 @@ export class ProductListPresenter {
             case CategoryType.ALL:
                 return this.filterRangeView.getTemplate();
             case CategoryType.ESTATE:
-                return createFilterEstate();
+                return createFilterEstate(filters);
             case CategoryType.LAPTOPS:
-                return createFilterLaptop();
+                return createFilterLaptop(filters);
             case CategoryType.CAMERA:
-                return createFilterCamera();
+                return createFilterCamera(filters);
             case CategoryType.CARS:
-                return createFilterCar();
+                return createFilterCar(filters);
             default:
                 return this.filterRangeView.getTemplate();
         }

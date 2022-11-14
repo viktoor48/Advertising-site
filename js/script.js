@@ -1,21 +1,10 @@
-import {popupCloseHandler} from "./src/utils/popupCloseHandler.js";
-
-// var mySlider = new rSlider({
-//     target: '#range',
-//     values: [10000, 1000000],
-//     step: 10000,
-//     range: true,
-//     tooltip: true,
-//     scale: false,
-//     labels: false,
-//     disabled: '',
-// });
+import {popupCloseHandler} from "./utils/popupCloseHandler.js";
 
 popupCloseHandler();
 
-import {ProductModel} from "./src/model/product-model.js";
-import {load} from "./src/model/get-data-model.js";
-import {ProductListPresenter} from "./src/presenter/product-list-presenter.js";
+import {ProductModel} from "./model/product-model.js";
+import {load} from "./utils/get-data.js";
+import {ProductListPresenter} from "./presenter/product-list-presenter.js";
 
 let productModel = new ProductModel();
 productModel.setProducts(await load());
