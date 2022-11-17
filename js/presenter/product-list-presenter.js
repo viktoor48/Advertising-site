@@ -1,16 +1,12 @@
-import {render} from "../utils/render.js";
+import {renderPosition, render, sorting, filterType, LocalstorageWrapper, preload} from "../utils/index.js";
 import {createProductItemTemplate} from "../view/product-item-view.js";
 import {ProductModalView} from "../view/product-modal-view.js";
-import {renderPosition} from "../utils/render.js";
-import {preload} from "../utils/image.js";
-import {LocalstorageWrapper} from "../utils/localstorage-wrapper.js";
 import {CategoryType} from "../const.js";
 import {createFilterCar} from "../view/filter-car-view.js";
 import {createFilterCamera} from "../view/filter-camera-view.js";
 import {createFilterEstate} from "../view/filter-estate-view.js";
 import {createFilterLaptop} from "../view/filter-laptop-view.js";
 import {FilterRangeView} from "../view/filter-all-view.js";
-import {filterType} from "../utils/filterFunction.js";
 import {filters} from "../const.js";
 
 const resultsList = document.querySelector(`.results__list`);
@@ -18,10 +14,6 @@ const mainContainer = document.querySelector(`main`);
 const localStorage = new LocalstorageWrapper('product');
 const btnSortingFavourites = document.querySelector('.sorting__favourites');
 const resultsInfoFavourites = document.querySelector('.results__info.favourites');
-const sortingTabList = document.querySelector('.sorting__order-list');
-const categoriesList = document.querySelector('#categories');
-const btnShowFilterResults = document.querySelector('.filter__button');
-const resultsInfoEmptyBlock = document.querySelector('.results__info--empty-block');
 
 export class ProductListPresenter {
     constructor(productModel) {
@@ -31,71 +23,7 @@ export class ProductListPresenter {
         this.outputListProducts = productModel.products;
         this.filterRangeView = new FilterRangeView(this.getRangePrice());
         this.currentFilter = 'sort-popular';
-        btnShowFilterResults.addEventListener('click', this.formFilterHandler.bind(this));
         btnSortingFavourites.addEventListener('click', this.sortingFavourites.bind(this));
-        sortingTabList.addEventListener('click', this.sortingTabListHandler.bind(this));
-        categoriesList.addEventListener('change', this.filterCategoryHandler.bind(this));
-    }
-
-    sortingTabListHandler(evt) {
-        evt.preventDefault();
-        const valueTab = evt.target.getAttribute('for');
-        this.currentFilter = valueTab;
-        const dataSort = sorting(this.currentFilter, this.outputListProducts);
-        this.clearElements();
-        this.renderProducts(dataSort);
-        this.productClickHandler();
-        this.previewPhotoMouseOverHandler();
-    }
-
-    formFilterHandler(evt) {
-        evt.preventDefault();
-        const filterForm = document.filterForm;
-        const formData = new FormData(filterForm);
-
-        let data = [...this.products];
-        let keys = Array.from(formData.keys());
-        let filterListType = {};
-        for (const key of keys) {
-            const typeList = formData.getAll(key);
-            filterListType[key] = typeList;
-        }
-
-        data = data.filter((product) => {
-            for (const key in filterListType) {
-                let result = filterType(product, filterListType, key);
-                if (result == false) {
-                    return false;
-                }
-            }
-
-            return true;
-        });
-
-        const labels = document.querySelectorAll('.rs-tooltip .rs-tooltip__value');
-        const minMax = [Number(labels[0].textContent), Number(labels[1].textContent)];
-
-        data = data.filter((product) => {
-            if (product.price >= minMax[0] && product.price <= minMax[1]) {
-                return true;
-            } else {
-                return false;
-            }
-        });
-
-        data = sorting(this.currentFilter, data);
-        this.outputListProducts = data;
-
-        if (data.length == 0) {
-            resultsInfoEmptyBlock.classList.remove('hidden');
-            this.clearElements();
-        } else {
-            resultsInfoEmptyBlock.classList.add('hidden');
-            this.clearElements();
-            this.renderProducts(data);
-            this.productClickHandler();
-            this.previewPhotoMouseOverHandler();
-        }
     }
 
     renderProducts(products = this.products) {
@@ -272,35 +200,6 @@ export class ProductListPresenter {
         });
     }
 
-    filterCategoryHandler(evt) {
-        this.currentCategory = evt.target.value;
-        let productsData = [];
-
-        if (this.currentCategory === CategoryType.ALL) {
-            productsData = [...this.products];
-        } else {
-            for (const product of this.products) {
-                if (product.category === this.currentCategory) {
-                    productsData.push(product);
-                }
-            }
-        }
-
-        productsData = sorting(this.currentFilter, productsData);
-
-
-        this.outputListProducts = [...productsData];
-        const priceMinMax = this.getRangePrice(this.outputListProducts);
-        this.filterRangeView.setPriceRange(priceMinMax);
-
-        resultsInfoEmptyBlock.classList.add('hidden');
-        this.clearElements();
-        this.renderProducts(this.outputListProducts);
-        this.productClickHandler();
-        this.previewPhotoMouseOverHandler();
-        this.renderFilterCategory();
-    }
-
     renderFilterCategory() {
         const filtersBlock = document.querySelector('.filter__category-filters');
         const filterTemplate = this.getCategoryFiltersView();
@@ -354,30 +253,4 @@ function findProduct(productArray, id) {
             return product;
         }
     }
-}
-
-function byField(field) {
-    return (a,b) => a[field] > b[field] ? 1 : -1;
-}
-
-function sorting(valueTab, products) {
-    const itemsTabList = sortingTabList.querySelectorAll('.sorting__order-tab');
-
-    itemsTabList.forEach((item) => {
-        if (item.firstElementChild.id == valueTab) {
-            item.firstElementChild.checked = true;
-        } else {
-            item.firstElementChild.checked = false;
-        }
-    });
-
-    let dataSort = [...products];
-    if (valueTab == 'sort-cheap') {
-        dataSort = dataSort.sort(byField('price')).reverse();
-    }
-    if (valueTab == 'sort-new') {
-        dataSort = dataSort.sort(byField('publish-date'));
-    }
-
-    return dataSort;
 }

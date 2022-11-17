@@ -1,21 +1,19 @@
-import {popupCloseHandler} from "./utils/popupCloseHandler.js";
+import {popupCloseHandler, load} from "./utils/index.js";
+import {ProductModel} from "./model/product-model.js";
+import {ProductListPresenter} from "./presenter/product-list-presenter.js";
+import {SortingPresenter} from "./presenter/sorting-presenter.js";
+import {FilterPresenter} from "./presenter/filter-presenter.js";
 
 popupCloseHandler();
 
-import {ProductModel} from "./model/product-model.js";
-import {load} from "./utils/get-data.js";
-import {ProductListPresenter} from "./presenter/product-list-presenter.js";
-
 let productModel = new ProductModel();
 productModel.setProducts(await load());
-
 productModel.setProducts(productModel.adaptToClient(productModel.getProducts()));
 
-
 //загрузка продуктов
-
 let productListPresenter = new ProductListPresenter(productModel);
-
+let sortingPresenter = new SortingPresenter(productListPresenter);
+let filterPresenter = new FilterPresenter(productListPresenter);
 productListPresenter.init();
 
 

@@ -1,6 +1,4 @@
-import {convertStringTimestampToDate, getPublishDateString, getPublishDateDifference} from "../utils/date.js";
-import {formatPrice, adaptCategory} from "../utils/product-adapters.js";
-import {LocalstorageWrapper} from "../utils/localstorage-wrapper.js";
+import {convertStringTimestampToDate, getPublishDateString, getPublishDateDifference, formatPrice, adaptCategory, LocalstorageWrapper} from "../utils/index.js";
 
 export class ProductModel{
      constructor() {
