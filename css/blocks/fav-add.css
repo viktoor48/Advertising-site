@@ -26,7 +26,6 @@
 
 
 .fav-add svg{
-
   display: block;
   transition: var(--animation);
 }
@@ -37,7 +36,7 @@
   height: 24px;
 }
 
- .fav-add:focus svg {
+.fav-add:focus svg {
   fill: var(--light-blue);
 }
 

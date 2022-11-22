@@ -6,9 +6,7 @@ import {FilterPresenter} from "./presenter/filter-presenter.js";
 
 popupCloseHandler();
 
-let productModel = new ProductModel();
-productModel.setProducts(await load());
-productModel.setProducts(productModel.adaptToClient(productModel.getProducts()));
+let productModel = new ProductModel(await load());
 
 //загрузка продуктов
 let productListPresenter = new ProductListPresenter(productModel);

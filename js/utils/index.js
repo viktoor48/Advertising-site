@@ -7,3 +7,4 @@ export {convertStringTimestampToDate, getPublishDateString, getPublishDateDiffer
 export {formatPrice, adaptCategory} from "./product-adapters.js";
 export {load} from "./get-data.js";
 export {popupCloseHandler} from "./popupCloseHandler.js";
+export {adaptToClient} from "./adaptData.js";

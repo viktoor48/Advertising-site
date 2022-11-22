@@ -87,6 +87,12 @@ export class ProductListPresenter {
 
                if (evt.target.id == 'product__favourite--svg' || evt.target.id == 'product__favourite--path') {
                    console.log('click to heart');
+                   const btnHeart = element.querySelector('.product__favourite');
+                   if (btnHeart.classList.contains('fav-add--checked')) {
+                       btnHeart.classList.remove('fav-add--checked')
+                   } else {
+                       btnHeart.classList.add('fav-add--checked');
+                   }
                    this.favouriteHandler(element);
                }
            }));
