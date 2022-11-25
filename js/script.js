@@ -1,3 +1,4 @@
+import "../css/style.css";
 import {popupCloseHandler, load} from "./utils/index.js";
 import {ProductModel} from "./model/product-model.js";
 import {ProductListPresenter} from "./presenter/product-list-presenter.js";

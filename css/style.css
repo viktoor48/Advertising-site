@@ -6,7 +6,7 @@
 @import "vendor/normalize.css";
 @import "blocks/onlineshop-app.css";
 @import "blocks/title.css";
-@import "blocks/filter.css";
+@import "blocks/filter.scss";
 @import "blocks/sorting.css";
 @import "blocks/results.css";
 @import "blocks/range.css";
