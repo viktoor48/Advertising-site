@@ -1,6 +1,3 @@
-/*!*********************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./css/variables.css ***!
-  \*********************************************************************/
 :root {
     --main-blue: #4456B1;
     --light-blue: #7B8FF7;
@@ -23,9 +20,6 @@
 
 
 
-/*!************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./css/global/fonts.css ***!
-  \************************************************************************/
 @font-face {
     font-style: normal;
     font-weight: 400;
@@ -60,9 +54,6 @@
   }
   
   
-/*!*************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./css/global/reboot.css ***!
-  \*************************************************************************/
 *,
 *::before,
 *::after {
@@ -148,9 +139,6 @@ button,
   appearance: none;
 }
 
-/*!************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./css/global/utils.css ***!
-  \************************************************************************/
 .visually-hidden:not(:focus):not(:active),
 input[type="checkbox"].visually-hidden,
 input[type="radio"].visually-hidden {
@@ -173,9 +161,6 @@ input[type="radio"].visually-hidden {
   display: none !important;
 }
 
-/*!*****************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./css/global/typography.css ***!
-  \*****************************************************************************/
 body {
     font-family: var(--main-font);
     font-size: 14px;
@@ -198,9 +183,6 @@ h6 {
   margin: 0;
   padding: 0;
 }
-/*!****************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./css/vendor/normalize.css ***!
-  \****************************************************************************/
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
@@ -550,9 +532,6 @@ h6 {
   [hidden] {
     display: none;
   }
-/*!*********************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./css/blocks/onlineshop-app.css ***!
-  \*********************************************************************************/
 .onlineshop-app {
   height: 100vh;
 }
@@ -572,9 +551,6 @@ h6 {
   position: relative;
 }
 
-/*!************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./css/blocks/title.css ***!
-  \************************************************************************/
 .title {
     margin: 0;
 
@@ -588,9 +564,6 @@ h6 {
     user-select: none;
 }
 
-/*!**************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./css/blocks/filter.scss ***!
-  \**************************************************************************/
 .filter {
   width: 348px;
   overflow-y: auto;
@@ -1092,9 +1065,6 @@ margin-bottom: 22px;
 /*  width: 345px;*/
 /*}*/
 
-/*!**************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./css/blocks/sorting.css ***!
-  \**************************************************************************/
 .sorting__form {
   display: flex;
   justify-content: space-between;
@@ -1277,9 +1247,6 @@ margin-bottom: 22px;
   fill: var(--white);
 }
 
-/*!**************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./css/blocks/results.css ***!
-  \**************************************************************************/
 .results {
   width: 922px;
   height: calc(100vh - 80px);
@@ -1341,9 +1308,6 @@ margin-bottom: 22px;
 }
 
 
-/*!************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./css/blocks/range.css ***!
-  \************************************************************************/
 .rs-container .rs-selected {
     color: var(--white);
     background-color: var(--main-blue);
@@ -1412,9 +1376,6 @@ margin-bottom: 22px;
 .noUi-connect, .noUi-origin {
     height: 80%;
 }
-/*!**************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./css/blocks/fav-add.css ***!
-  \**************************************************************************/
 .fav-add {
   position: absolute;
   top: 29px;
@@ -1485,9 +1446,6 @@ margin-bottom: 22px;
 .fav-add--checked svg {
   fill: #ffffff;
 }
-/*!**************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./css/blocks/product.css ***!
-  \**************************************************************************/
 .product {
   margin-bottom: 20px;
   position: relative;
@@ -1640,9 +1598,6 @@ margin-bottom: 22px;
   color: var(--disabled-blue);
 }
 
-/*!*****************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./css/blocks/favourites.css ***!
-  \*****************************************************************************/
 .favourites p {
   width: 58%;
   margin: 0;
@@ -1669,9 +1624,6 @@ margin-bottom: 22px;
   flex-direction: column;
   align-items: center;
 }
-/*!************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./css/blocks/popup.css ***!
-  \************************************************************************/
 .popup {
   position: absolute;
   z-index: 3;
@@ -1826,9 +1778,6 @@ margin-bottom: 22px;
 }
 
 
-/*!**************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./css/blocks/gallery.css ***!
-  \**************************************************************************/
 .gallery {
   position: relative;
 }
@@ -1872,9 +1821,6 @@ margin-bottom: 22px;
   filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.25));
 }
 
-/*!************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./css/blocks/chars.css ***!
-  \************************************************************************/
 .chars {
   margin: 0;
   padding: 0;
@@ -1905,9 +1851,6 @@ margin-bottom: 22px;
 .chars__item:not(:last-child) {
   padding-right: 44px;
 }
-/*!*************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./css/blocks/seller.css ***!
-  \*************************************************************************/
 .seller h3 {
   margin-bottom: 8px;
   width: 100%;
@@ -1996,8 +1939,5 @@ margin-bottom: 22px;
   background-repeat: no-repeat;
 }
 
-/*!*****************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./css/style.css ***!
-  \*****************************************************************/
 
 
